@@ -19,8 +19,10 @@ public class Cipher {
 	 * @param key2 The second key (no Q's)
 	 */
 	public Cipher(String key1, String key2) {
-		//COMPLETE THIS CONSTRUCTOR
-		//CREATE plain1, plain2, cipher1, and cipher2
+		plain1 = new Square();
+		plain2 = new Square();
+		cipher1 = new Square(key1);
+		cipher2 = new Square(key2);
 	} // end 2 arg constructor
 
 	/**
@@ -32,11 +34,10 @@ public class Cipher {
 	 * @return The encrypted message
 	 */
 	public String encrypt(String message) {
-		//COMPLETE THIS METHOD
-
-		//RETURN THE ENCRYPTED message
-
-		//UPDATE THIS LINE WHEN DONE
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < message.length()-1; i++){
+			
+		}
 		return "";
 	} // end encrypt
 

@@ -13,7 +13,15 @@ public class Square {
 	 */
 	public Square() {
 		matrix = new char[5][5];
-
+		String all = "abcdefghijklmnoprstuvwxyz";
+		StringBuilder sb = new StringBuilder(all);
+		int count = 0;
+		for(int row = 0; row < 5; row++){
+			for(int column = 0; column < 5; column++){
+				matrix[row][column] = all.charAt(count);
+				count++;
+			}
+		}
 		//COMPLETE THIS CONSTRUCTOR
 		//FILL matrix WITH A-Z, SKIPPING Q
 	} // end no-arg constructor
@@ -27,7 +35,22 @@ public class Square {
 	 */
 	public Square(String key) {
 		matrix = new char[5][5];
-
+		String all = "abcdefghijklmnoprstuvwxyz";
+		StringBuilder sb = new StringBuilder(all);
+		int count = 0;
+		removeDups(key);
+		for(int i = 0; i < key.length(); i++){
+			if(strContains(key, key.charAt(i)))
+				sb.delete(i,i+1);
+		}
+		all = key + sb.toString();
+		
+		for(int row = 0; row < 5; row++){
+			for(int column = 0; column < 5; column++){
+				matrix[row][column] = all.charAt(count);
+				count++;
+			}
+		}
 		//COMPLETE THIS CONSTRUCTOR
 		//FILL matrix WITH key, THEN REMAINING A-Z, SKIPPING Q
 	} // end one-arg constructor
@@ -42,11 +65,7 @@ public class Square {
 	 * @return The character at (row, col)
 	 */
 	public char getChar(int row, int col) {
-		//COMPLETE THIS METHOD
-		//RETURN THE CHARACTER IN MATRIX AT POSITION row,col
-
-		//UPDATE THIS LINE WHEN DONE
-		return ' ';
+		return matrix[row][col];
 	} // end getChar
 
 	/**
@@ -64,7 +83,15 @@ public class Square {
 		
 		// Search through matrix for 'c' and, when found
 		// store row in pos[0] and col in pos[1]
-
+		for(int row = 0; row < 5; row++){
+			for(int col = 0; col < 5; col++){
+				if(matrix[row][col] == c){
+					pos[0] = row;
+					pos[1] = col;
+					return pos;
+				}
+			}
+		}
 
 		// If NOT found...
 		//Leave this code in so that it will compile
@@ -88,9 +115,10 @@ public class Square {
 	 */
 	private boolean strContains(String str, char c) {
 
-		//COMPLETE THIS METHOD (Optional, but strongly suggested)
-
-		//REMOVE THIS LINE WHEN DONE
+		for(int i = 0; i < str.length(); i++){
+			if(str.charAt(i) == c)
+				return true;
+		}
 		return false;
 		
 	} // end strContains
@@ -104,10 +132,16 @@ public class Square {
 	 * @return The string with all duplicates removed
 	 */
 	private String removeDups(String key) {
-		//COMPLETE THIS METHOD (Optional, but strongly suggested)
-
+		StringBuilder sb = new StringBuilder(key);
+		
+		for(int k = 0; k < key.length(); k++){
+			for(int i = k+1; i < key.length(); i++){
+				if(key.charAt(k) == key.charAt(i))
+					sb.delete(i,i+1);
+			}
+		}
 		//REMOVE THIS LINE WHEN DONE
-		return "";
+		return sb.toString();
 
 	} // end removeDups	
 
