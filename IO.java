@@ -1,4 +1,4 @@
-I/**
+/**
  * IO handles all input and output for the
  * four-square encryption algorithm
  *
@@ -23,10 +23,8 @@ public class IO {
 	 * @return The first key from the user
 	 */
 	public String firstKey() {
-		//COMPLETE THIS TO GET THE FIRST KEY
-
-		//UPDATE THIS LINE WHEN DONE
-		return "";
+		System.out.print("Enter the first key: ");
+		return s.nextLine();
 	} // end firstKey
 
 
@@ -36,10 +34,8 @@ public class IO {
 	 * @return The second key from the user
 	 */
 	public String secondKey() {
-		//COMPLETE THIS TO GET THE SECOND KEY
-
-		//UPDATE THIS LINE WHEN DONE
-		return "";
+		System.out.print("Enter the second key: ");
+		return s.nextLine();
 	} // end secondKey
 
 	/**
@@ -48,11 +44,8 @@ public class IO {
 	 * @return 'e' for encryption, and 'd' for decryption
 	 */
 	public char encryptOrDecrypt() {
-		//COMPLETE THIS TO GET THE ENCRYPT OR DECRYPT OPTION
-
-		//UPDATE THIS LINE WHEN DONE
-		return ' ';
-
+		System.out.print("Would you like to encrypt or dcrypt? (e/d): ");
+		return s.nextLine().charAt(0);
 	} // end encryptOrDecrypt
 
 	/**
@@ -63,10 +56,58 @@ public class IO {
 	 * @return The message from the user
 	 */
 	public String message(boolean encrypt) {
-		//COMPLETE THIS TO GET THE MESSAGE
-
-		//UPDATE THIS LINE WHEN DONE
-		return "";
+		boolean flag = false;
+		String str = "";
+		if(encrypt){
+			do{
+				System.out.print("Enter the message to encrypt: ");
+				str = s.nextLine();
+				
+				StringBuilder sb = new StringBuilder(str);
+				for(int i = 0; i < str.length(); i++){
+					if(str.charAt(i) == ' ')
+						sb.delete(i,i+1);
+				}
+				str = sb.toString();
+				
+				if(str.length()%2 != 0){
+					System.out.println("Your message must contain an even amount of characters, not including spaces.");
+					flag = true;
+				}
+				for(int i = 0; i < str.length(); i++){
+					if(str.charAt(i) == 'q'){
+						System.out.println("Your message cannot contain the letter q.");
+						flag = true;
+					}
+				}
+			}while(flag);
+			return str;
+		}
+		else{
+			do{
+				System.out.print("Enter the message to decrypt: ");
+				str = s.nextLine();
+				
+				StringBuilder sb = new StringBuilder(str);
+				for(int i = 0; i < str.length(); i++){
+					if(str.charAt(i) == ' ')
+						sb.delete(i,i+1);
+				}
+				str = sb.toString();
+				
+				if(str.length()%2 != 0){
+					System.out.println("Your message must contain an even amount of characters, not including spaces.");
+					flag = true;
+				}
+				for(int i = 0; i < str.length(); i++){
+					if(str.charAt(i) == 'q'){
+						System.out.println("Your message cannot contain the letter q.");
+						flag = true;
+					}
+				}
+			}while(flag);
+			return str;
+		}
 	} // end message
 
 	/**

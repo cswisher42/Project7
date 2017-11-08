@@ -36,9 +36,15 @@ public class Cipher {
 	public String encrypt(String message) {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < message.length()-1; i++){
-			
+			int [] first = plain1.getPos(message.charAt(i));
+			int [] second = plain2.getPos(message.charAt(i));
+			char firstLetter = cipher1.getChar(first[0], second[1]);
+			char secondLetter = cipher2.getChar(second[0], first[1]);
+			sb.append(firstLetter);
+			sb.append(secondLetter);
+		
 		}
-		return "";
+		return sb.toString();
 	} // end encrypt
 
 	/**
@@ -50,11 +56,16 @@ public class Cipher {
 	 * @return The decrypted message
 	 */
 	public String decrypt(String message) {
-		//COMPLETE THIS METHOD
-
-		//RETURN THE DECRYPTED message
-
-		//UPDATE THIS LINE WHEN DONE
-		return "";
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < message.length()-1; i++){
+			int [] first = cipher1.getPos(message.charAt(i));
+			int [] second = cipher2.getPos(message.charAt(i));
+			char firstLetter = plain1.getChar(first[0], second[1]);
+			char secondLetter = plain2.getChar(second[0], first[1]);
+			sb.append(firstLetter);
+			sb.append(secondLetter);
+		
+		}
+		return sb.toString();
 	} // end decrypt
 } // end class
