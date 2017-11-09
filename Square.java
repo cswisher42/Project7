@@ -36,23 +36,26 @@ public class Square {
 	public Square(String key) {
 		matrix = new char[5][5];
 		String all = "abcdefghijklmnoprstuvwxyz";
-		StringBuilder sb = new StringBuilder(all);
+		StringBuilder sb = new StringBuilder();
 		int count = 0;
-		removeDups(key);
-		for(int i = 0; i < key.length(); i++){
-			if(strContains(key, key.charAt(i)))
-				sb.delete(i,i+1);
+		key = removeDups(key);
+		for(int i = 0; i < 25; i++){
+			if(!strContains(key, all.charAt(i))){
+				sb.append(all.charAt(i));
+				//System.out.println(sb.toString());
+			}
 		}
 		all = key + sb.toString();
+		//System.out.println(all);
 		
 		for(int row = 0; row < 5; row++){
 			for(int column = 0; column < 5; column++){
 				matrix[row][column] = all.charAt(count);
+				//System.out.print(matrix[row][column]);
 				count++;
 			}
+			//System.out.println();
 		}
-		//COMPLETE THIS CONSTRUCTOR
-		//FILL matrix WITH key, THEN REMAINING A-Z, SKIPPING Q
 	} // end one-arg constructor
 
 	/**
@@ -85,6 +88,7 @@ public class Square {
 		// store row in pos[0] and col in pos[1]
 		for(int row = 0; row < 5; row++){
 			for(int col = 0; col < 5; col++){
+				//System.out.println(matrix[row][col]);
 				if(matrix[row][col] == c){
 					pos[0] = row;
 					pos[1] = col;
@@ -116,8 +120,10 @@ public class Square {
 	private boolean strContains(String str, char c) {
 
 		for(int i = 0; i < str.length(); i++){
-			if(str.charAt(i) == c)
+			if(str.charAt(i) == c){
+				//System.out.println("strContains = true at: " + c);
 				return true;
+			}
 		}
 		return false;
 		
@@ -132,17 +138,12 @@ public class Square {
 	 * @return The string with all duplicates removed
 	 */
 	private String removeDups(String key) {
-		StringBuilder sb = new StringBuilder(key);
-		
-		for(int k = 0; k < key.length(); k++){
-			for(int i = k+1; i < key.length(); i++){
-				if(key.charAt(k) == key.charAt(i))
-					sb.delete(i,i+1);
-			}
+		String removed = "";
+		for(int i = 0; i < key.length(); i++){
+			if(!removed.contains(String.valueOf(key.charAt(i))))
+				removed += String.valueOf(key.charAt(i));
 		}
-		//REMOVE THIS LINE WHEN DONE
-		return sb.toString();
-
+		return removed;
 	} // end removeDups	
 
 } // end class

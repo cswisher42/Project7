@@ -24,7 +24,13 @@ public class IO {
 	 */
 	public String firstKey() {
 		System.out.print("Enter the first key: ");
-		return s.nextLine();
+		String str = s.nextLine().toLowerCase();
+		StringBuilder sb = new StringBuilder(str);
+		for(int i = 0; i < str.length(); i++){
+			if(str.charAt(i) == ' ')
+				sb.deleteCharAt(i);
+		}
+		return sb.toString();
 	} // end firstKey
 
 
@@ -35,7 +41,13 @@ public class IO {
 	 */
 	public String secondKey() {
 		System.out.print("Enter the second key: ");
-		return s.nextLine();
+		String str = s.nextLine().toLowerCase();
+		StringBuilder sb = new StringBuilder(str);
+		for(int i = 0; i < str.length(); i++){
+			if(str.charAt(i) == ' ')
+				sb.deleteCharAt(i);
+		}
+		return sb.toString();
 	} // end secondKey
 
 	/**
@@ -60,23 +72,24 @@ public class IO {
 		String str = "";
 		if(encrypt){
 			do{
+				flag = false;				
 				System.out.print("Enter the message to encrypt: ");
-				str = s.nextLine();
+				str = s.nextLine().toLowerCase();
 				
-				StringBuilder sb = new StringBuilder(str);
+				StringBuilder sb = new StringBuilder();
 				for(int i = 0; i < str.length(); i++){
-					if(str.charAt(i) == ' ')
-						sb.delete(i,i+1);
+					if(str.charAt(i) != ' ')
+						sb.append(str.charAt(i));
 				}
 				str = sb.toString();
 				
 				if(str.length()%2 != 0){
-					System.out.println("Your message must contain an even amount of characters, not including spaces.");
+					printError("Your message must contain an even amount of characters, not including spaces.");
 					flag = true;
 				}
 				for(int i = 0; i < str.length(); i++){
 					if(str.charAt(i) == 'q'){
-						System.out.println("Your message cannot contain the letter q.");
+						printError("Your message cannot contain the letter q.");
 						flag = true;
 					}
 				}
@@ -85,23 +98,25 @@ public class IO {
 		}
 		else{
 			do{
+				flag = false;
 				System.out.print("Enter the message to decrypt: ");
-				str = s.nextLine();
+				str = s.nextLine().toLowerCase();
 				
-				StringBuilder sb = new StringBuilder(str);
+				StringBuilder sb = new StringBuilder();
 				for(int i = 0; i < str.length(); i++){
-					if(str.charAt(i) == ' ')
-						sb.delete(i,i+1);
+					if(str.charAt(i) != ' ')
+						sb.append(str.charAt(i));
 				}
 				str = sb.toString();
+				//System.out.println(str);
 				
 				if(str.length()%2 != 0){
-					System.out.println("Your message must contain an even amount of characters, not including spaces.");
+					printError("Your message must contain an even amount of characters, not including spaces.");
 					flag = true;
 				}
 				for(int i = 0; i < str.length(); i++){
 					if(str.charAt(i) == 'q'){
-						System.out.println("Your message cannot contain the letter q.");
+						printError("Your message cannot contain the letter q.");
 						flag = true;
 					}
 				}
@@ -117,7 +132,10 @@ public class IO {
 	 * @param encrypt True if encrypting, false if decrypting
 	 */
 	public void printResults(String msg, boolean encrypt) {
-		//COMPLETE THIS TO PRINT THE RESULTS
+		if(encrypt)
+			System.out.println("\nEncrypted message: " + msg);
+		else
+			System.out.println("\nDecrypted message: " + msg);
 	} // end printResults
 
 	/*
@@ -126,7 +144,7 @@ public class IO {
 	 * @param err The error message to print
 	 */
 	public void printError(String err) {
-		//COMPLETE THIS TO PRINT THE ERROR MESSAGE
+		System.out.println(err);
 	} // end printError
 
 } // end class

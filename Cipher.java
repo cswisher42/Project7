@@ -35,14 +35,15 @@ public class Cipher {
 	 */
 	public String encrypt(String message) {
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < message.length()-1; i++){
+		for(int i = 0; i < message.length(); i+=2){
 			int [] first = plain1.getPos(message.charAt(i));
-			int [] second = plain2.getPos(message.charAt(i));
+			int [] second = plain2.getPos(message.charAt(i+1));
 			char firstLetter = cipher1.getChar(first[0], second[1]);
+			//System.out.println("char 1: " + firstLetter);
 			char secondLetter = cipher2.getChar(second[0], first[1]);
+			//System.out.println("char 2: " + secondLetter);
 			sb.append(firstLetter);
 			sb.append(secondLetter);
-		
 		}
 		return sb.toString();
 	} // end encrypt
@@ -56,10 +57,11 @@ public class Cipher {
 	 * @return The decrypted message
 	 */
 	public String decrypt(String message) {
+		//System.out.println(message);
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < message.length()-1; i++){
+		for(int i = 0; i < message.length(); i+=2){
 			int [] first = cipher1.getPos(message.charAt(i));
-			int [] second = cipher2.getPos(message.charAt(i));
+			int [] second = cipher2.getPos(message.charAt(i+1));
 			char firstLetter = plain1.getChar(first[0], second[1]);
 			char secondLetter = plain2.getChar(second[0], first[1]);
 			sb.append(firstLetter);
