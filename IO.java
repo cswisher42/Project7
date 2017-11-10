@@ -2,7 +2,18 @@
  * IO handles all input and output for the
  * four-square encryption algorithm
  *
- * <Add remaining required documentation here>
+ * The IO class reads in two keys, which are validated
+ * to ensure that the character 'q' is not present. The
+ * user then enters wheter they want to encrypt or decrypt
+ * their message. The message is then read in and
+ * validated to ensure that the length of the message is
+ * even (with spaces removed) and does not contain the
+ * letter 'q'. Finally, one method prints the modified
+ * message and another takes a string to be displayed
+ * as an error message.
+ * #3 Extra Credit Included
+ * @author Chuck Swisher
+ * @version Project 7
  */
 
 import java.util.*;

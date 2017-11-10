@@ -2,7 +2,18 @@
  * Square represents one of the squares in the four-square
  * cipher algorithm.
  *
- * <Add remaining required documentation here>
+ * Square class builds the arrays of characters to be used to encrypt.
+ * One contructor makes a simple array with the characters in alphabetical
+ * order. One consturctor makes an array with the characters in reverse
+ * alphabetical order. The last contructor puts the key at the beginning
+ * of the array with duplicates removed and all the other letters not in
+ * the key follow in alphabetical order. There are methods to get a
+ * specific character or its cordinates. Lastly, there are methods to
+ * check if a character is in a string and to remove duplicates from a 
+ * string.
+ * #3 Extra Credit Included
+ * @author Chuck Swisher
+ * @version Project 7
  */
 
 public class Square {
@@ -25,6 +36,19 @@ public class Square {
 		//COMPLETE THIS CONSTRUCTOR
 		//FILL matrix WITH A-Z, SKIPPING Q
 	} // end no-arg constructor
+	
+	public Square(boolean b) {
+		matrix = new char[5][5];
+		String all = "zyxwvutsrponmlkjihgfedcba";
+		StringBuilder sb = new StringBuilder(all);
+		int count = 0;
+		for(int row = 0; row < 5; row++){
+			for(int col = 0; col < 5; col++){
+				matrix[row][col] = all.charAt(count);
+				count++;
+			}
+		}
+	}
 
 	/**
 	 * Square first puts the characters from key into

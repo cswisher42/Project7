@@ -2,7 +2,15 @@
  * This project implements the four-square cipher, allowing for
  * encryption and decryption.
  *
- * <Add remaining required documentation here>
+ * Controller class creates an IO object and a Cipher
+ * object. The methods are called to get the keys and
+ * users message as well as if they want to encrypt
+ * or decrypt. The Cipher object is used to get the
+ * desired output and the IO object is used again to
+ * display the modified message.
+ * #3 Extra Credit Included
+ * @author Chuck Swisher
+ * @version Project 7
 */
 
 public class Proj7 {

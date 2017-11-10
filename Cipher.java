@@ -2,7 +2,15 @@
  * Cipher handles the encryption and decryption of
  * messages according to the four-square cipher algorithm.
  *
- * <Add remaining required documentation here>
+ * The cipher constructor takes to keys in the form of Strings
+ * to be passed to the Square objects that are created.
+ * Encrypt takes the Square objects and applies the coordinate
+ * switching algorithm to return an encrypted String while
+ * the method decrypt runs the opposite of the encrypt
+ * algorithm to return the decrypted String.
+ * #3 Extra Credit Included
+ * @author Chuck Swisher
+ * @version Project 7
  */
 
 public class Cipher {
@@ -20,7 +28,7 @@ public class Cipher {
 	 */
 	public Cipher(String key1, String key2) {
 		plain1 = new Square();
-		plain2 = new Square();
+		plain2 = new Square(true);
 		cipher1 = new Square(key1);
 		cipher2 = new Square(key2);
 	} // end 2 arg constructor
