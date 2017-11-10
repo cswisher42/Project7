@@ -23,13 +23,28 @@ public class IO {
 	 * @return The first key from the user
 	 */
 	public String firstKey() {
-		System.out.print("Enter the first key: ");
-		String str = s.nextLine().toLowerCase();
-		StringBuilder sb = new StringBuilder(str);
+		boolean flag;
+		String str;
+		do{
+			flag = false;
+			System.out.print("Enter the first key: ");
+			str = s.nextLine().toLowerCase();
+			
+			for(int i = 0; i < str.length(); i++){
+				if(str.charAt(i) == 'q'){
+					printError("Your key cannot contain the letter q.");
+					flag = true;
+				}
+			}
+		}while(flag);
+		
+		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < str.length(); i++){
-			if(str.charAt(i) == ' ')
-				sb.deleteCharAt(i);
-		}
+				if(str.charAt(i) != ' '){
+					sb.append(str.charAt(i));
+					//System.out.println(sb.toString());
+				}
+			}	
 		return sb.toString();
 	} // end firstKey
 
@@ -40,13 +55,26 @@ public class IO {
 	 * @return The second key from the user
 	 */
 	public String secondKey() {
-		System.out.print("Enter the second key: ");
-		String str = s.nextLine().toLowerCase();
-		StringBuilder sb = new StringBuilder(str);
+		boolean flag;
+		String str;
+		do{
+			flag = false;
+			System.out.print("Enter the second key: ");
+			str = s.nextLine().toLowerCase();
+			
+			for(int i = 0; i < str.length(); i++){
+				if(str.charAt(i) == 'q'){
+					printError("Your key cannot contain the letter q.");
+					flag = true;
+				}
+			}
+		}while(flag);
+		
+		StringBuilder sb = new StringBuilder();
 		for(int i = 0; i < str.length(); i++){
-			if(str.charAt(i) == ' ')
-				sb.deleteCharAt(i);
-		}
+				if(str.charAt(i) != ' ')
+					sb.append(str.charAt(i));
+			}	
 		return sb.toString();
 	} // end secondKey
 
